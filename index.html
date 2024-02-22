@@ -6,8 +6,60 @@
     <link rel="icon" type="image/png" href="./public/icon.png">
     <title>Document CoPilot</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Sora:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        h1,h2,h3 {
+            font-family: 'Sora', sans-serif;
+        }
+        /* Modal background */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 10% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 800px; /* Could be more or less, depending on screen size */
+            height:600px;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    
 </head>
-<body class="font-sans bg-gray-50">
+<body class="bg-gray-50">
     
     <!-- Top Page Fold -->
     <div class="flex flex-col md:flex-row min-h-screen">
@@ -26,12 +78,12 @@
                 <h1 class="text-5xl md:text-7xl font-bold text-gray-900">Your AI CoPilot for doc collaboration.</h1> <!-- Adjusted text size -->
                 <p class="text-gray-600 mt-4 mb-8">Iterate seamlessly on top of Google Docs to revise, edit, and improve your work.</p>
                 <p class="text-gray-600 mt-4 mb-8">
-                    ✅&nbsp; Built into the native comments workflow, where you already collaborate!<br />
-                    ✅&nbsp; No apps or extensions to install!<br />
-                    ✅&nbsp; Our servers never log your content, and you can unshare the copilot any time!
+                    ✅&nbsp; Built into the native comments workflow, where you already collaborate.<br />
+                    ✅&nbsp; No apps or extensions to install.<br />
+                    ✅&nbsp; Our servers never log your content, and you can unshare the copilot any time.
                 </p>
 
-                <div class="px-6 py-4 bg-blue-500 text-white font-semibold text-lg rounded-md shadow-md inline-block hover:bg-blue-600 hover:cursor-pointer ">
+                <div class="play-vid-button px-6 py-4 bg-blue-500 text-white font-semibold text-lg rounded-md shadow-md inline-block hover:bg-blue-600 hover:cursor-pointer ">
                     👉 Just share with <span class="text-yellow-300 font-bold">document.copilot@gmail.com</span> to get going!
                 </div>
             </div>
@@ -42,17 +94,24 @@
             <div class="bg-gray-200 shadow-lg rounded-lg overflow-hidden relative" style="width: 600px; height: 600px;">
                 <img src="./public/concept.png" alt="Video Placeholder" class="absolute w-full h-full top-0 left-0 object-cover">
                 <!-- Play Button -->
-                <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-lg cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" style="transition: background-color 0.3s ease;">
+                <button class="play-vid-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-lg cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" style="transition: background-color 0.3s ease;">
                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 4.5l8 5.5-8 5.5V4.5z"></path></svg>
                 </button>
                 
             </div>
         </div>
 
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <iframe src="https://www.loom.com/embed/2d671128ac4d43678883dedb1256befb?sid=f7ed0258-e733-4707-9354-13f2bbf534e1" frameborder="0" allow="autoplay; fullscreen" style="width: 100%; height: 100%;"></iframe>
+            </div>
+        </div>
+
     </div>
 
     <!-- Testimonials -->
-    <section class="bg-gray-100 py-12">
+    <section class="py-2">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
             <!-- Testimonial -->
             <div class="bg-white rounded-lg p-6 shadow-sm">
@@ -67,7 +126,7 @@
                 <div class="flex mt-4">
                     <img class="w-11 h-11 mr-3 rounded-full" src="./public/person1.png" alt="User photo"> <!-- Smaller icon with margin right -->
                     <div>
-                        <p class="text-gray-700">Dakota</p>
+                        <p class="text-gray-700">Amanda</p>
                         <p class="text-gray-500 text-sm">Postdoc </p>
                     </div>
                 </div>
@@ -80,11 +139,11 @@
                     <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
                     <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
                 </div>
-                <p class="text-gray-600">"I use the copilot on all my investment memos now before sharing with my partnership. It's been surprisingly awesome at diligence and helping me framing my argument."</p>
+                <p class="text-gray-600">"I use the copilot on all my investment memos now before sharing with my partnership. It's been surprisingly awesome at diligence and helping me frame my argument."</p>
                 <div class="flex mt-4">
-                    <img class="w-11 h-11 mr-3 rounded-full" src="./public/person1.png" alt="User photo"> <!-- Smaller icon with margin right -->
+                    <img class="w-11 h-11 mr-3 rounded-full" src="./public/person2.png" alt="User photo"> <!-- Smaller icon with margin right -->
                     <div>
-                        <p class="text-gray-700">Miranda</p>
+                        <p class="text-gray-700">David</p>
                         <p class="text-gray-500 text-sm">Investment Principal</p>
                     </div>
                 </div>
@@ -97,11 +156,11 @@
                     <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
                     <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
                 </div>
-                <p class="text-gray-600">"CoPilot is now shared on all my substack posts as I draft them, and has been like having a personal editorial intern!"</p>
+                <p class="text-gray-600">"CoPilot is now shared on all my substack posts as I draft them. It is like having a personal editorial intern!"</p>
                 <div class="flex mt-4">
-                    <img class="w-11 h-11 mr-3 rounded-full" src="./public/person1.png" alt="User photo"> <!-- Smaller icon with margin right -->
+                    <img class="w-11 h-11 mr-3 rounded-full" src="./public/person3.png" alt="User photo"> <!-- Smaller icon with margin right -->
                     <div>
-                        <p class="text-gray-700">Peter</p>
+                        <p class="text-gray-700">Devon</p>
                         <p class="text-gray-500 text-sm">Founder</p>
                     </div>
                 </div>
@@ -115,21 +174,21 @@
 
     <!-- Sample Use Cases-->
     <section class="py-12">
-        <div class="max-w-6xl mx-auto py-12">
+        <div class="max-w-6xl mx-auto py-12 bg-gray-100" style="min-height: 400px;">
             <!-- Toggle buttons -->
-            <div class="flex justify-center mb-8">
-                <button class="toggle-btn" onclick="showImage(1)">Product Spec</button>
-                <button class="toggle-btn" onclick="showImage(2)">Student Paper</button>
-                <button class="toggle-btn" onclick="showImage(3)">Investment Memo</button>
-                <button class="toggle-btn" onclick="showImage(4)">Substack Essay</button>
-                <button class="toggle-btn" onclick="showImage(5)">Book Review</button>
+            <div class="flex justify-center mb-8 space-x-2">
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm bg-white" onclick="toggleButton(this)">Product Spec</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Student Paper</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Investment Memo</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Substack Essay</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Book Review</button>
             </div>
             <!-- Carousel Images -->
             <div class="flex justify-center">
-                <img id="carousel-image" src="./public/examples/product-spec.png" class="carousel-image" style="width:1200px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;" >
+                <img id="carousel-image" src="./public/examples/product-spec.png" class="shadow-md rounded-lg" style="width:1000px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);" >
             </div>
         </div>
-        
+    
         <script>
             function showImage(index) {
                 const images = [
@@ -137,30 +196,140 @@
                     "./public/examples/student-paper.png", 
                     "./public/examples/investment-memo.png", 
                     "./public/examples/substack-essay.png", 
-                    "./public/examples/book-review.png" 
+                    "./public/examples/book-review.png"
                 ];
                 document.getElementById("carousel-image").src = images[index - 1];
             }
+
+            function toggleButton(clickedButton) {
+                // Reset all buttons to default style
+                document.querySelectorAll('.toggle-btn').forEach(button => {
+                    button.classList.remove('bg-white');
+                });
+
+                // Apply toggled style to clicked button
+                clickedButton.classList.add('bg-white');
+
+                // Determine which image to show based on button index
+                const buttonIndex = Array.from(clickedButton.parentNode.children).indexOf(clickedButton);
+                showImage(buttonIndex + 1);
+            }
         </script>
-        
-        <style>
-            .toggle-btn {
-                padding: 8px 16px;
-                margin: 0 8px;
-                border: 2px solid #333;
-                background-color: #fff;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-            .toggle-btn:hover {
-                background-color: #333;
-                color: #fff;
-            }
-            .carousel-image {
-                height: auto;
-            }
-        </style>
     </section> 
+
+    <!-- FAQ Section -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto py-10 px-14 bg-gray-100 text-sm">
+            <h2 class="font-bold text-center text-gray-900 mb-8">Frequently Asked Questions</h2>
+            <div class="space-y-3">
+                <!-- FAQ 1 -->
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <div class="faq-header px-4 py-5 sm:px-6 cursor-pointer">
+                        <div class=" leading-6 font-semibold text-gray-900">
+                            How does it work?
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 hidden">
+                        <div class="px-4 py-5 sm:p-6 text-gray-600">
+                            When you share a document with our copilot account, we'll go login and and open up that document the same way any other collaborator might. Then we'll take the content and pass it through OpenAI's GPT Large Language Model to generate feedback based on any guidance or direction you have offered. 
+                            
+                            <br /> <br />Suggestions come back and are inserted via the native google docs comment interface. You can reply to comments to interact directly with the copilot and offer steering and direction. 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 1 -->
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <div class="faq-header px-4 py-5 sm:px-6 cursor-pointer">
+                        <div class=" leading-6 font-semibold text-gray-900">
+                            How do I share documents with Document CoPilot?
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 hidden">
+                        <div class="px-4 py-5 sm:p-6 text-gray-600">
+                            Simply share your document with <span class="text-blue-500 font-semibold">document.copilot@gmail.com</span> directly from your Google Docs sharing settings. <br />
+                            <br />
+                            Make sure to check the "notify" checkbox, so the copilot gets alerted and can go drop in.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <div class="faq-header px-4 py-5 sm:px-6 cursor-pointer">
+                        <div class=" leading-6 font-semibold text-gray-900">
+                            Is my data safe and private?
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200  hidden">
+                        <div class="px-4 py-5 sm:p-6 text-gray-600">
+                            Absolutely. We prioritize your privacy and security, never logging or storing your content beyond the realtime processing as we pass it back and forth to Open AI's GPT model.
+                            Further, to permanently revoke our copilot's access, all you need to do is unshare the file!
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <div class="faq-header px-4 py-5 sm:px-6 cursor-pointer">
+                        <div class="leading-6 font-semibold text-gray-900">
+                            Can I use Document CoPilot for any topic?
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200  hidden">
+                        <div class="px-4 py-5 sm:p-6 text-gray-600">
+                            Document CoPilot is versatile and can be used across a wide range of topics. Go crazy!
+                            <br />
+                            <br />
+                            At this time we only support Google documents, not spreadsheets or slides. 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <div class="faq-header px-4 py-5 sm:px-6 cursor-pointer">
+                        <div class="leading-6 font-semibold text-gray-900">
+                            Tips and Tricks
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200  hidden">
+                        <div class="px-4 py-5 sm:p-6 text-gray-600">
+                            Be sure to give the copilot a clear indication through comments of what you are trying to acheive. 
+
+                            <br /><br /> Do you want tactical feedback on grammar and tone? Big picture feedback on structure and argument? etc.
+
+                            <br /><br /> The copilot is preconfigured not to overwhelm you with suggestions, but if you want more feedback just instruct it so. "Give me 10 more comments on sections I can improve." etc
+
+                        </div>
+                    </div>
+                </div>
+
+               <!-- FAQ 3 -->
+               <div class="bg-white shadow overflow-hidden rounded-md">
+                <div class="faq-header px-4 py-5 sm:px-6 cursor-pointer">
+                    <div class="leading-6 font-semibold text-gray-900">
+                        What does it cost?
+                    </div>
+                </div>
+                <div class="border-t border-gray-200  hidden">
+                    <div class="px-4 py-5 sm:p-6 text-gray-600">
+                        Document CoPilot is free to demo and experiment with, add it to any doc now!
+                        If you find it useful, then after an initial set of free comments we charge a small fee (via secure Stripe link) for ongoing comment generation. 
+                    </div>
+                </div>
+            </div>
+                
+            </div>
+        </div>
+    </section>
+    <script>
+        document.querySelectorAll('.faq-header').forEach((item) => {
+            item.addEventListener('click', function() {
+                this.nextElementSibling.classList.toggle('hidden');
+            });
+        });
+    </script>
+    <!-- End FAQ Section -->
+
 
     <!-- Footer -->
     <footer class="bg-gray-700 text-white text-center py-3">
@@ -169,5 +338,49 @@
     </footer>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("videoModal");
+        
+        // Get all buttons that open the modal
+        var btns = document.getElementsByClassName("play-vid-button");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // Get the iframe
+        var iframe = document.querySelector("#videoModal iframe");
+        var iframeSrc = iframe.src; // Save the original src
+        
+        // Function to open the modal and play the video
+        function openModal() {
+            modal.style.display = "block";
+            // Reset src to ensure any autoplay parameters are freshly appended
+            iframe.src = iframeSrc + "&autoplay=1";
+        }
+        
+        // Assign the openModal function to each play button
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener('click', openModal);
+        }
+        
+        // When the user clicks on <span> (x), close the modal and pause (reload) the video
+        span.onclick = function() {
+            modal.style.display = "none";
+            // Reset src to stop the video and remove autoplay parameter
+            iframe.src = iframeSrc;
+        }
+        
+        // Also, close the modal if the user clicks anywhere outside of the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                // Reset src to stop the video and remove autoplay parameter
+                iframe.src = iframeSrc;
+            }
+        }
+    </script>
+        
 </body>
 </html>
