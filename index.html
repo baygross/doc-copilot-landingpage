@@ -15,6 +15,18 @@
         h1,h2,h3 {
             font-family: 'Sora', sans-serif;
         }
+        body header p.greenbox{
+            text-indent: -22px; /* Indent for the first line */
+            padding-left: 22px; /* Padding to simulate indent effect on wrapped lines */
+            margin-top: 5px;
+        }
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Keeps items centered as they wrap */
+            gap: 8px; /* Replaces space-x-2 to ensure gaps between lines */
+        }
+
         /* Modal background */
         .modal {
             display: none; /* Hidden by default */
@@ -33,11 +45,23 @@
         .modal-content {
             position: relative;
             background-color: #fefefe;
-            margin: 10% auto; /* 15% from the top and centered */
+            margin: 10% auto; /* Centered with top margin */
             padding: 20px;
             border: 1px solid #888;
-            width: 800px; /* Could be more or less, depending on screen size */
-            height:600px;
+            width: 60%; /* Default width for larger screens */
+            height: 60%; /* Default height for larger screens */
+            max-width: 900px; /* Maximum width to ensure it doesn't get too large */
+            max-height: 90%; /* Maximum height to ensure content is always visible */
+            overflow: auto; /* Enable scrolling for overflowing content */
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%; /* Increase width for medium-sized devices like tablets */
+                height: 45%; /* Adjust height to be auto to accommodate content */
+                margin: 5px auto; /* Adjust top margin to be less for closer edge appearance */
+                padding: 5px;
+            }
         }
 
         /* The Close Button */
@@ -75,16 +99,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="px-12 py-8 md:py-48">
+                <div class="px-12 py-8 md:py-32">
                     <h1 class="text-5xl md:text-7xl font-bold text-gray-900">Your AI CoPilot for doc collaboration.</h1> <!-- Adjusted text size -->
-                    <p class="text-gray-600 mt-4 mb-8">Iterate seamlessly on top of Google Docs to revise, edit, and improve your work.</p>
-                    <p class="text-gray-600 mt-4 mb-8">
-                        ✅&nbsp; Built into the native comments workflow, where you already collaborate.<br />
-                        ✅&nbsp; No apps or extensions to install.<br />
+                    <p class="text-gray-600 mt-4 mb-6">Iterate seamlessly on top of Google Docs to revise, edit, and improve your work.</p>
+                    <p class="greenbox text-gray-600">
+                        ✅&nbsp; Built into the native comments workflow, where you already collaborate.
+                    </p>
+                    <p class="greenbox text-gray-600">
+                        ✅&nbsp; No apps or extensions to install.
+                    </p><p class="greenbox text-gray-600">
                         ✅&nbsp; Our servers never log your content, and you can unshare the copilot any time.
                     </p>
 
-                    <div class="play-vid-button px-6 py-4 bg-blue-500 text-white font-semibold text-lg rounded-md shadow-md inline-block hover:bg-blue-600 hover:cursor-pointer ">
+                    <div class="mt-6 play-vid-button px-6 py-4 bg-blue-500 text-white font-semibold text-lg rounded-md shadow-md inline-block hover:bg-blue-600 hover:cursor-pointer ">
                         👉 Just share with <span class="text-yellow-300 font-bold">document.copilot@gmail.com</span> to get going!
                     </div>
                 </div>
@@ -92,7 +119,7 @@
 
             <!-- Adjust Video Placeholder to Include Play Button -->
             <div class="md:w-1/2 flex items-center justify-center p-8 relative">
-                <div class="bg-gray-200 shadow-lg rounded-lg overflow-hidden relative" style="width: 600px; height: 600px;">
+                <div class="bg-gray-200 mx-auto shadow-lg rounded-lg overflow-hidden relative" style="width: 85%; height: 65%; min-width:340px; min-height:340px">
                     <img src="./public/concept.png" alt="Video Placeholder" class="absolute w-full h-full top-0 left-0 object-cover">
                     <!-- Play Button -->
                     <button class="play-vid-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-lg cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" style="transition: background-color 0.3s ease;">
@@ -177,7 +204,7 @@
         <section class="py-12">
             <div class="max-w-6xl mx-auto py-12 bg-gray-100" style="min-height: 400px;">
                 <!-- Toggle buttons -->
-                <div class="flex justify-center mb-8 space-x-2">
+                <div class="flex flex-wrap justify-center mb-8 space-x-2">
                     <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm bg-white" onclick="toggleButton(this)">Product Spec</button>
                     <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Student Paper</button>
                     <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Investment Memo</button>
@@ -186,7 +213,7 @@
                 </div>
                 <!-- Carousel Images -->
                 <div class="flex justify-center">
-                    <img id="carousel-image" src="./public/examples/product-spec.png" class="shadow-md rounded-lg" style="width:1000px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);" >
+                    <img id="carousel-image" src="./public/examples/product-spec.png" class="shadow-md rounded-lg" style="width:600px; max-width:85% box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);" >
                 </div>
             </div>
         
