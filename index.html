@@ -16,8 +16,8 @@
             font-family: 'Sora', sans-serif;
         }
         body header p.greenbox{
-            text-indent: -22px; /* Indent for the first line */
-            padding-left: 22px; /* Padding to simulate indent effect on wrapped lines */
+            text-indent: -24px; /* Indent for the first line */
+            padding-left: 24px; /* Padding to simulate indent effect on wrapped lines */
             margin-top: 5px;
         }
         .flex-wrap {
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="px-2 lg:px-12 py-8 md:py-32  2xl:mb-40">
-                    <h1 class="text-5xl md:text-7xl font-bold text-gray-900">Your AI CoPilot for doc collaboration.</h1> <!-- Adjusted text size -->
+                    <h1 class="text-5xl md:text-7xl font-bold text-gray-900">Your AI CoPilot for doc collaboration.</h1>  
                     <p class="text-gray-600 mt-4 mb-6">Iterate seamlessly on top of Google Docs to revise, edit, and improve your work.</p>
                     <p class="greenbox text-gray-600">
                         ✅&nbsp; Built into the native comments workflow, where you already collaborate.
@@ -152,7 +152,7 @@
                     </div>
                     <p class="text-gray-600">"This totally changed my thesis revision process! Game changer!"</p>
                     <div class="flex mt-4">
-                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person1.png" alt="User photo"> <!-- Smaller icon with margin right -->
+                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person1.png" alt="User photo"> 
                         <div>
                             <p class="text-gray-700">Amanda</p>
                             <p class="text-gray-500 text-sm">Postdoc </p>
@@ -169,7 +169,7 @@
                     </div>
                     <p class="text-gray-600">"I use the copilot on all my investment memos now before sharing with my partnership. It's been surprisingly awesome at diligence and helping me frame my argument."</p>
                     <div class="flex mt-4">
-                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person2.png" alt="User photo"> <!-- Smaller icon with margin right -->
+                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person2.png" alt="User photo"> 
                         <div>
                             <p class="text-gray-700">David</p>
                             <p class="text-gray-500 text-sm">Investment Principal</p>
@@ -186,7 +186,7 @@
                     </div>
                     <p class="text-gray-600">"CoPilot is now shared on all my substack posts as I draft them. It is like having a personal editorial intern!"</p>
                     <div class="flex mt-4">
-                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person3.png" alt="User photo"> <!-- Smaller icon with margin right -->
+                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person3.png" alt="User photo"> 
                         <div>
                             <p class="text-gray-700">Devon</p>
                             <p class="text-gray-500 text-sm">Founder</p>
@@ -259,9 +259,13 @@
                         </div>
                         <div class="border-t border-gray-200 hidden">
                             <div class="px-4 py-5 text-gray-600">
-                                When you share a document with our copilot account, we'll go login and and open up that document the same way any other collaborator might. Then we'll take the content and pass it through OpenAI's GPT Large Language Model to generate feedback based on any guidance or direction you have offered. 
-                                
-                                <br /> <br />Suggestions come back and are inserted via the native google docs comment interface. You can reply to comments to interact directly with the copilot and offer steering and direction. 
+                                Inviting our Copilot to collaborate on your document is easy! Once you share the file, the Copilot will open it up and get to work, just like any other collaborator would. It will carefully review the content and provide personalized feedback based on the guidance or direction you've provided.
+                                <br /><br />
+                                The Copilot will leave its suggestions directly in the document using Google Docs' comment feature. You can reply to those comments or create new ones to engage in a back-and-forth conversation with the Copilot.
+                                <br /><br />
+                                As long as you keep the dialogue going, the Copilot will stick around and respond to any comments or replies you leave. If you need to take a break for more than 30 minutes or so, no worries! The Copilot will politely exit the document and unshare itself. Whenever you're ready to collaborate again, simply re-share the file, and the Copilot will happily rejoin you for another jam session.
+                                <br /><br />
+                                We're excited to have the Copilot as your writing companion, working together to bring your ideas to life. Let's get started!
                             </div>
                         </div>
                     </div>
@@ -270,14 +274,16 @@
                     <div class="bg-white shadow overflow-hidden rounded-md">
                         <div class="faq-header px-4 py-5 cursor-pointer">
                             <div class=" leading-6 font-semibold text-gray-900">
-                                How do I share documents with Document CoPilot?
+                                How do I share a google document with the CoPilot?
                             </div>
                         </div>
                         <div class="border-t border-gray-200 hidden">
                             <div class="px-4 py-5 text-gray-600">
-                                Simply share your document with <span class="text-blue-500 font-semibold">document.copilot@gmail.com</span> directly from your Google Docs sharing settings. <br />
-                                <br />
+                                Simply share your document with <span class="text-blue-500 font-semibold">document.copilot@gmail.com</span> directly from your Google Docs sharing settings. 
+                                <br /><br />
                                 Make sure to check the "notify" checkbox, so the copilot gets alerted and can go drop in.
+                                <br /><br />
+                                "Edit mode" is best, but "suggest mode" can work as well if you are concerned about access.
                             </div>
                         </div>
                     </div>
@@ -289,25 +295,28 @@
                             </div>
                         </div>
                         <div class="border-t border-gray-200  hidden">
-                            <div class="px-4 py-5 text-gray-600">
-                                Absolutely. We prioritize your privacy and security, never logging or storing your content beyond the realtime processing as we pass it back and forth to Open AI's GPT model.
-                                Further, to permanently revoke our copilot's access, all you need to do is unshare the file!
-                            </div>
+                            <div class="px-4 py-5 text-gray-600"> 
+                                Your privacy is our top priority. We never log or store your content beyond the time needed for our in-the-moment collaboration. Rest assured, your work stays safe with us.
+                                <br /><br />
+                                And for added peace of mind, as long as you grant us edit access, we will automatically remove ourselves from your document at the end of each session. It's that easy and secure!
+                                <br /><br />
+                                Behind the scenes, the Copilot relies on cutting-edge language models like Anthropic's Claude and OpenAI's GPT. Any data passed between our services and these providers is subject to their respective privacy policies, which you can review <a href="https://www.anthropic.com/legal/privacy">here</a> and <a href="https://openai.com/policies/privacy-policy">here</a>.
+                                </div>
                         </div>
                     </div>
                     <!-- FAQ 3 -->
                     <div class="bg-white shadow overflow-hidden rounded-md">
                         <div class="faq-header px-4 py-5 cursor-pointer">
                             <div class="leading-6 font-semibold text-gray-900">
-                                Can I use Document CoPilot for any topic?
+                                What topics and filetypes?
                             </div>
                         </div>
                         <div class="border-t border-gray-200  hidden">
                             <div class="px-4 py-5 text-gray-600">
-                                Document CoPilot is versatile and can be used across a wide range of topics. Go crazy!
+                                Document CoPilot is versatile and can be used across a wide range of document topics. Go crazy!
                                 <br />
                                 <br />
-                                At this time we only support Google documents, not spreadsheets or slides. 
+                                However at this time we only support Google documents, not spreadsheets or slides. 
                             </div>
                         </div>
                     </div>
@@ -316,16 +325,16 @@
                     <div class="bg-white shadow overflow-hidden rounded-md">
                         <div class="faq-header px-4 py-5 cursor-pointer">
                             <div class="leading-6 font-semibold text-gray-900">
-                                Tips and Tricks
+                                Tips and tricks.
                             </div>
                         </div>
                         <div class="border-t border-gray-200  hidden">
                             <div class="px-4 py-5 text-gray-600">
-                                Be sure to give the copilot a clear indication through comments of what you are trying to acheive. 
+                                Be sure to give the copilot a clear indication through comments of what you are trying to achieve. 
 
                                 <br /><br /> Do you want tactical feedback on grammar and tone? Big picture feedback on structure and argument? etc.
 
-                                <br /><br /> The copilot is preconfigured not to overwhelm you with suggestions, but if you want more feedback just instruct it so. "Give me 10 more comments on sections I can improve." etc
+                                <br /><br /> The copilot is preconfigured not to overwhelm you with suggestions, but if you want heavier feedback just instruct it so: "Give me 8 more comments on [...]." etc
 
                             </div>
                         </div>
