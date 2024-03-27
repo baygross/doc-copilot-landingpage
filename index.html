@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./public/icon.png">
-    <title>Document CoPilot</title>
+    <title>CoPilot</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Sora:wght@400;700&display=swap" rel="stylesheet">
 
@@ -79,6 +79,13 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        button:hover{
+            text-decoration: underline;
+        }
+        button.text-black:hover{
+            text-decoration: none;
         }
     </style>
     
@@ -201,21 +208,23 @@
         </section>
 
         <!-- Sample Use Cases-->
-        <section class="py-12">
-            <div class="max-w-6xl mx-auto py-12 bg-gray-100" style="min-height: 400px;">
-                <!-- Toggle buttons -->
-                <div class="flex flex-wrap justify-center mb-8 space-x-2">
-                    <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm bg-white" onclick="toggleButton(this)">Product Spec</button>
-                    <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Student Paper</button>
-                    <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Investment Memo</button>
-                    <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Substack Essay</button>
-                    <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Book Review</button>
-                </div>
-                <!-- Carousel Images -->
-                <div class="flex justify-center">
-                    <img id="carousel-image" src="./public/examples/product-spec.png" class="shadow-md rounded-lg" style="width:600px; max-width:85% box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);" >
-                </div>
+        <section class="my-12 bg-gray-800">
+            <div class="max-w-6xl mx-auto py-12 flex flex-col md:flex-row items-center">
+              <!-- Toggle buttons -->
+              <div class="flex flex-row md:flex-col justify-center space-y-2 mb-8 md:mb-0 md:mr-8 text-white">
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm text-black bg-white" onclick="toggleButton(this)">Product Spec</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Student Paper</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Investment Memo</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Substack Essay</button>
+                <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Book Review</button>
+              </div>
+          
+              <!-- Carousel Images -->
+              <div class="flex justify-center">
+                <img id="carousel-image" src="./public/examples/product-spec.png" class="shadow-md rounded-lg" style="max-width:90%; width:800px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+              </div>
             </div>
+          </section>
         
             <script>
                 function showImage(index) {
@@ -233,10 +242,12 @@
                     // Reset all buttons to default style
                     document.querySelectorAll('.toggle-btn').forEach(button => {
                         button.classList.remove('bg-white');
+                        button.classList.remove('text-black');
                     });
 
                     // Apply toggled style to clicked button
                     clickedButton.classList.add('bg-white');
+                    clickedButton.classList.add('text-black');
 
                     // Determine which image to show based on button index
                     const buttonIndex = Array.from(clickedButton.parentNode.children).indexOf(clickedButton);
@@ -247,7 +258,7 @@
 
         <!-- FAQ Section -->
         <section class="py-12">
-            <div class="max-w-6xl mx-auto py-10 px-14 bg-gray-100 text-sm">
+            <div class="max-w-6xl mx-auto py-10 px-14 text-sm">
                 <h2 class="font-bold text-center text-gray-900 mb-8">Frequently Asked Questions</h2>
                 <div class="space-y-3">
                     <!-- FAQ 1 -->
@@ -308,12 +319,12 @@
                     <div class="bg-white shadow overflow-hidden rounded-md">
                         <div class="faq-header px-4 py-5 cursor-pointer">
                             <div class="leading-6 font-semibold text-gray-900">
-                                What topics and filetypes?
+                                What types of documents do you support?
                             </div>
                         </div>
                         <div class="border-t border-gray-200  hidden">
                             <div class="px-4 py-5 text-gray-600">
-                                Document CoPilot is versatile and can be used across a wide range of document topics. Go crazy!
+                                Document CoPilot is versatile and can be used across a wide range of document topics, so go crazy!
                                 <br />
                                 <br />
                                 However at this time we only support Google documents, not spreadsheets or slides. 
@@ -325,7 +336,7 @@
                     <div class="bg-white shadow overflow-hidden rounded-md">
                         <div class="faq-header px-4 py-5 cursor-pointer">
                             <div class="leading-6 font-semibold text-gray-900">
-                                Tips and tricks.
+                                Tips and tricks for getting the most out of CoPilot?
                             </div>
                         </div>
                         <div class="border-t border-gray-200  hidden">
@@ -368,9 +379,9 @@
 
     </div> <!-- wrapper-->
     <!-- Footer -->
-    <footer class="bg-gray-700 text-white text-center py-3">
+    <footer class="text-center py-3">
         <p class="text-xs mt-2">Follow us on Twitter: <a href="https://x.com/baygross">@baygross</a> and <a href="https://x.com/matthewslotkin">@matthewslotkin</a></p>
-        <p class="text-xs mt-2">Document CoPilot is not affiliated with GPT (OpenAI) or Google Documents.</p>
+        <p class="text-xs mt-2 mb-5">Document CoPilot is not affiliated with OpenAI, Google, or Anthropic.</p>
     </footer>
 
     <script src="https://cdn.tailwindcss.com"></script>
