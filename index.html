@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./public/icon.png">
-    <title>CoPilot</title>
+    <title>Document CoPilot</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Sora:wght@400;700&display=swap" rel="stylesheet">
 
@@ -15,6 +15,10 @@
         h1,h2,h3 {
             font-family: 'Sora', sans-serif;
         }
+        *::selection {
+            background: rgb(245, 245, 129);
+        }
+
         body header p.greenbox{
             text-indent: -24px; /* Indent for the first line */
             padding-left: 24px; /* Padding to simulate indent effect on wrapped lines */
@@ -27,6 +31,14 @@
             gap: 8px; /* Replaces space-x-2 to ensure gaps between lines */
         }
 
+        #howitworks p{
+            padding-top:12px;
+            padding-bottom:12px;
+        }
+        #faq p{
+            padding-top:6px;
+            padding-bottom:6px;
+        }
         /* Modal background */
         .modal {
             display: none; /* Hidden by default */
@@ -39,6 +51,14 @@
             overflow: auto; /* Enable scroll if needed */
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        @keyframes tiltRight {
+            0% { transform: rotate(0deg); }
+            15% { transform: rotate(1.5deg); }
+            45% { transform: rotate(-1.5deg); }
+            70% { transform: rotate(1deg); }
+            91% { transform: rotate(-1deg); }
+            100% { transform: rotate(0deg); }
         }
 
         /* Modal Content */
@@ -87,6 +107,48 @@
         button.text-black:hover{
             text-decoration: none;
         }
+
+        .CTA {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: start; /* Align items to the start of the button */
+            gap: 8px; /* Spacing between icon and text */
+        }
+
+        .copy-icon {
+            width: 20px;
+            height: 20px;
+            display:inline-block;
+            color: white;
+            cursor: pointer;
+        }
+
+        .tooltip {
+            position: absolute; /* Positioning relative to the button */
+            white-space: nowrap; /* Prevents the tooltip from wrapping */
+            display: none; /* Hide by default, shown on hover */
+            background-color: #333; /* Tooltip background */
+            color: white; /* Tooltip text color */
+            text-align: center;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            z-index: 10; /* Ensures it's on top */
+        }
+
+        /* Show tooltip when hovering over the icon */
+        .CTA:hover .tooltip {
+            display: block;
+        }
+
+        #usecases{
+            background: 
+                radial-gradient(at 30% 90%, rgba(59, 118, 238, 0.4) 0px, transparent 30%), 
+                radial-gradient(at 50% 50%, rgba(36, 150, 30, 0.4) 0px, transparent 40%),   
+                radial-gradient(at 70% 90%, rgba(220, 200, 50, 0.5) 0px, transparent 30%);
+            } 
+
     </style>
     
 </head>
@@ -108,19 +170,22 @@
                 </div>
                 <div class="px-2 lg:px-12 py-8 md:py-32  2xl:mb-40">
                     <h1 class="text-5xl md:text-7xl font-bold text-gray-900">Your AI CoPilot for doc collaboration.</h1>  
-                    <p class="text-gray-600 mt-4 mb-6">Iterate seamlessly on top of Google Docs to revise, edit, and improve your work.</p>
+                    <p class="text-gray-600 mt-4 mb-6">Iterate seamlessly on top of Google Documents to revise, edit, and improve your work.</p>
                     <p class="greenbox text-gray-600">
-                        ✅&nbsp; Built into the native comments workflow, where you already collaborate.
+                        →&nbsp; Built into the native comments workflow, where you already collaborate.
                     </p>
                     <p class="greenbox text-gray-600">
-                        ✅&nbsp; No apps or extensions to install.
+                        →&nbsp; No apps or extensions to install.
                     </p><p class="greenbox text-gray-600">
-                        ✅&nbsp; Our servers never log your content, and you can unshare the copilot any time.
+                        →&nbsp; Our servers never log your content, and you can unshare the copilot any time.
                     </p>
 
-                    <div class="mt-6 play-vid-button px-6 py-4 bg-blue-500 text-white font-semibold text-lg rounded-md shadow-md inline-block hover:bg-blue-600 hover:cursor-pointer ">
-                        👉 Just share with <span class="text-yellow-300 font-bold">document.copilot@gmail.com</span> to get going!
+                    <div onclick="copyEmailToClipboard()" class="CTA mt-6 px-6 py-4 bg-blue-500 text-white font-semibold text-lg rounded-md shadow-md inline-block hover:bg-blue-600 hover:cursor-pointer ">
+                        <svg class="copy-icon cursor-pointer" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Click to copy to clipboard"><path d="M16,1H4C2.897,1,2,1.897,2,3v14h2V3h12V1z M19,5H8c-1.103,0-2,0.897-2,2v14c0,1.103,0.897,2,2,2h11c1.103,0,2-0.897,2-2V7 C21,5.897,20.103,5,19,5z M19,21H8V7h11V21z"/></svg>
+                        &nbsp;Just share with <span style="color:rgb(255, 242, 67);" class="font-bold">document.copilot@gmail.com</span> to get going!
+                        <span id='tooltip' class="tooltip hidden absolute text-sm bg-gray-800 text-white p-1 rounded right-5 -bottom-8">Click to copy to clipboard</span>                    
                     </div>
+                        
                 </div>
             </header>
 
@@ -145,73 +210,11 @@
 
         </div>
 
-        <!-- Testimonials -->
-        <section class="py-2">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-                <!-- Testimonial -->
-                <div class="bg-white rounded-lg p-6 shadow-sm">
-                    <div class="text-yellow-400 mb-2 flex justify-center">
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                    </div>
-                    <p class="text-gray-600">"This totally changed my thesis revision process! Game changer!"</p>
-                    <div class="flex mt-4">
-                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person1.png" alt="User photo"> 
-                        <div>
-                            <p class="text-gray-700">Amanda</p>
-                            <p class="text-gray-500 text-sm">Postdoc </p>
-                        </div>
-                    </div>
-                </div> 
-                <div class="bg-white rounded-lg p-6 shadow-sm">
-                    <div class="text-yellow-400 mb-2 flex justify-center">
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                    </div>
-                    <p class="text-gray-600">"I use the copilot on all my investment memos now before sharing with my partnership. It's been surprisingly awesome at diligence and helping me frame my argument."</p>
-                    <div class="flex mt-4">
-                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person2.png" alt="User photo"> 
-                        <div>
-                            <p class="text-gray-700">David</p>
-                            <p class="text-gray-500 text-sm">Investment Principal</p>
-                        </div>
-                    </div>
-                </div>     
-                <div class="bg-white rounded-lg p-6 shadow-sm">
-                    <div class="text-yellow-400 mb-2 flex justify-center">
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                        <img src="./public/star-full.svg" alt="Star" class="h-5 w-5"> 
-                    </div>
-                    <p class="text-gray-600">"CoPilot is now shared on all my substack posts as I draft them. It is like having a personal editorial intern!"</p>
-                    <div class="flex mt-4">
-                        <img class="w-11 h-11 mr-3 rounded-full" src="./public/person3.png" alt="User photo"> 
-                        <div>
-                            <p class="text-gray-700">Devon</p>
-                            <p class="text-gray-500 text-sm">Founder</p>
-                        </div>
-                    </div>
-                </div>    
-
-
-
-
-            </div>
-        </section>
-
         <!-- Sample Use Cases-->
-        <section class="my-12 bg-gray-800">
+        <section id="usecases" class="my-12">
             <div class="max-w-6xl mx-auto py-12 flex flex-col md:flex-row items-center">
               <!-- Toggle buttons -->
-              <div class="flex flex-row md:flex-col justify-center space-y-2 mb-8 md:mb-0 md:mr-8 text-white">
+              <div class="flex flex-row md:flex-col justify-center space-y-2 mb-8 md:mb-0 md:mr-8 text-gray-600">
                 <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm text-black bg-white" onclick="toggleButton(this)">Product Spec</button>
                 <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Student Paper</button>
                 <button class="toggle-btn py-1 px-4 rounded-full font-semibold text-sm" onclick="toggleButton(this)">Investment Memo</button>
@@ -221,7 +224,7 @@
           
               <!-- Carousel Images -->
               <div class="flex justify-center">
-                <img id="carousel-image" src="./public/examples/product-spec.png" class="shadow-md rounded-lg" style="max-width:90%; width:800px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                <img id="carousel-image" src="./public/examples/product-spec.png" class="shadow-md rounded-lg" style="max-width:90%; width:800px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
               </div>
             </div>
           </section>
@@ -236,6 +239,8 @@
                         "./public/examples/book-review.png"
                     ];
                     document.getElementById("carousel-image").src = images[index - 1];
+                    document.getElementById("carousel-image").style.animation = 'tiltRight 0.5s ease forwards';
+                    setTimeout(() => { document.getElementById("carousel-image").style.animation = ''; }, 500);  
                 }
 
                 function toggleButton(clickedButton) {
@@ -257,77 +262,25 @@
         </section> 
 
         <!-- FAQ Section -->
-        <section class="py-12">
-            <div class="max-w-6xl mx-auto py-10 px-14 text-sm">
-                <h2 class="font-bold text-center text-gray-900 mb-8">Frequently Asked Questions</h2>
+        <section id="faq" class="py-12">
+            <div class="max-w-6xl mx-auto py-10 px-14">
+                <h2 class="text-2xl md:text-3xl font-bold font-bold text-center text-gray-900 mb-8">Frequently Asked Questions</h2>
                 <div class="space-y-3">
                     <!-- FAQ 1 -->
                     <div class="bg-white shadow overflow-hidden rounded-md">
                         <div class="faq-header px-4 py-5 cursor-pointer">
                             <div class=" leading-6 font-semibold text-gray-900">
-                                How does it work?
+                                How do I get started?
                             </div>
                         </div>
-                        <div class="border-t border-gray-200 hidden">
+                        <div class="border-t border-gray-200">
                             <div class="px-4 py-5 text-gray-600">
-                                Inviting our Copilot to collaborate on your document is easy! Once you share the file, the Copilot will open it up and get to work, just like any other collaborator would. It will carefully review the content and provide personalized feedback based on the guidance or direction you've provided.
-                                <br /><br />
-                                The Copilot will leave its suggestions directly in the document using Google Docs' comment feature. You can reply to those comments or create new ones to engage in a back-and-forth conversation with the Copilot.
-                                <br /><br />
-                                As long as you keep the dialogue going, the Copilot will stick around and respond to any comments or replies you leave. If you need to take a break for more than 30 minutes or so, no worries! The Copilot will politely exit the document and unshare itself. Whenever you're ready to collaborate again, simply re-share the file, and the Copilot will happily rejoin you for another jam session.
-                                <br /><br />
-                                We're excited to have the Copilot as your writing companion, working together to bring your ideas to life. Let's get started!
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FAQ 1 -->
-                    <div class="bg-white shadow overflow-hidden rounded-md">
-                        <div class="faq-header px-4 py-5 cursor-pointer">
-                            <div class=" leading-6 font-semibold text-gray-900">
-                                How do I share a google document with the CoPilot?
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200 hidden">
-                            <div class="px-4 py-5 text-gray-600">
-                                Simply share your document with <span class="text-blue-500 font-semibold">document.copilot@gmail.com</span> directly from your Google Docs sharing settings. 
-                                <br /><br />
-                                Make sure to check the "notify" checkbox, so the copilot gets alerted and can go drop in.
-                                <br /><br />
-                                "Edit mode" is best, but "suggest mode" can work as well if you are concerned about access.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ 2 -->
-                    <div class="bg-white shadow overflow-hidden rounded-md">
-                        <div class="faq-header px-4 py-5 cursor-pointer">
-                            <div class=" leading-6 font-semibold text-gray-900">
-                                Is my data safe and private?
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200  hidden">
-                            <div class="px-4 py-5 text-gray-600"> 
-                                Your privacy is our top priority. We never log or store your content beyond the time needed for our in-the-moment collaboration. Rest assured, your work stays safe with us.
-                                <br /><br />
-                                And for added peace of mind, as long as you grant us edit access, we will automatically remove ourselves from your document at the end of each session. It's that easy and secure!
-                                <br /><br />
-                                Behind the scenes, the Copilot relies on cutting-edge language models like Anthropic's Claude and OpenAI's GPT. Any data passed between our services and these providers is subject to their respective privacy policies, which you can review <a href="https://www.anthropic.com/legal/privacy">here</a> and <a href="https://openai.com/policies/privacy-policy">here</a>.
-                                </div>
-                        </div>
-                    </div>
-                    <!-- FAQ 3 -->
-                    <div class="bg-white shadow overflow-hidden rounded-md">
-                        <div class="faq-header px-4 py-5 cursor-pointer">
-                            <div class="leading-6 font-semibold text-gray-900">
-                                What types of documents do you support?
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200  hidden">
-                            <div class="px-4 py-5 text-gray-600">
-                                Document CoPilot is versatile and can be used across a wide range of document topics, so go crazy!
-                                <br />
-                                <br />
-                                However at this time we only support Google documents, not spreadsheets or slides. 
+                                <p>Just share your Google Doc* with our Copilot like you would with any other email address.  
+                                </p><p>Within about 10 seconds, you should see Copilot join the Google Doc and begin to add comments and replies.
+                                </p><p>If you have something in particular you want to ask our Copilot, just add a comment.  If you want elaboration on a suggestion, add a reply. Copilot will watch your Google Doc and respond with thoughtful and focused in-line edits.  <p><p>
+                                As long as you keep the dialogue going, the Copilot will stick around and respond to any comments or replies you leave. If you need to take a break for more than 30 minutes or so, no worries! The Copilot will politely exit the document and unshare itself. Whenever you're ready to collaborate again, simply re-share the file, and the Copilot will happily rejoin you for another jam session.</p>
+                                <p><i>* at this time you'll need to share with 'edit' access, and make sure to check 'notify people' checkbox.</i>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -355,20 +308,97 @@
                 <div class="bg-white shadow overflow-hidden rounded-md">
                     <div class="faq-header px-4 py-5 cursor-pointer">
                         <div class="leading-6 font-semibold text-gray-900">
-                            What does it cost?
+                            What does Copilot cost?
                         </div>
                     </div>
                     <div class="border-t border-gray-200  hidden">
                         <div class="px-4 py-5 text-gray-600">
-                            Document CoPilot is free to demo and experiment with, add it to any doc now!
-                            If you find it useful, then after an initial set of free comments we charge a small fee (via secure Stripe link) for ongoing comment generation. 
+                            Document CoPilot is free to demo and experiment with, add it to any doc now!<br/ ><br/ >
+                            If you find it useful, then after an initial set of free comments we charge a small fee (via secure Stripe link) for another few hundred comments. There is no hidden fees, lock-in, or subscription. 
                         </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <div class="faq-header px-4 py-5 cursor-pointer">
+                        <div class="leading-6 font-semibold text-gray-900">
+                            What types of documents does Copilot support?
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200  hidden">
+                        <div class="px-4 py-5 text-gray-600">
+                            Document CoPilot is versatile and can be used across a wide range of document topics, so go crazy!
+                            <br />
+                            <br />
+                            However at this time we only support Google Documents, not yet spreadsheets or slides. 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white shadow overflow-hidden rounded-md">
+                    <div class="faq-header px-4 py-5 cursor-pointer">
+                        <div class=" leading-6 font-semibold text-gray-900">
+                            Is my data safe and private?
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200  hidden">
+                        <div class="px-4 py-5 text-gray-600"> 
+                            Your privacy is our top priority. We never log or store your content beyond the time needed for our in-the-moment collaboration. Rest assured, your work stays safe with us.
+                            <br /><br />
+                            And for added peace of mind, as long as you grant us edit access, we will automatically remove ourselves from your document at the end of each session. It's that easy and secure!
+                            <br /><br />
+                            Behind the scenes, the Copilot relies on cutting-edge language models like Anthropic's Claude and OpenAI's GPT. Any data passed between our services and these providers is subject to their respective privacy policies, which you can review <a href="https://www.anthropic.com/legal/privacy">here</a> and <a href="https://openai.com/policies/privacy-policy">here</a>.
+                            </div>
                     </div>
                 </div>
                     
                 </div>
             </div>
         </section>
+
+        <!-- How It Works Section -->
+        <section class="py-12" id="howitworks">
+            <div class="max-w-4xl mx-auto bg-white px-10 py-14" style="box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2)">
+
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-90 text-center">
+                👋 &nbsp;Behind the scenes
+            </h2>
+            <p>
+                Thank you for checking out our Document Copilot! There are two product observations about the State of AI that motivated this project: 
+            </p><p>
+                <u>1. Piecemeal Content Iteration</u><br />
+                Using LLMs like OpenAI/Bard/Anthropic is a neat and new way to take your written content and receive generative AI suggestions for improvement. The UX of these experiences, however, leaves much to be desired. Today there are tens of millions of users who are copy-and-pasting their emails, resumes, essays, and recipes back and forth between their browser and their document editor. Woof!
+            </p><p>                
+                More than just losing formatting and being an annoying loop of ctrl+c/ctrl-v, the real limitation of this pattern is in the way LLMs tend to wholesale rewrite the content they are prompted with.  A good editor would (usually) not start your essay over from scratch, but that is often exactly what the LLM will do. Trying to get them to iterate piecemeal over a growing body of text is near impossible.  
+            </p><p>               
+                <u>2. Low-friction Discovery</u><br />
+                For many of us, the ‘onboarding’ of new AI experiences is also still too much of a headache. New passwords, new accounts, new interfaces and workflow patterns. New install requirements, or subscriptions to forget about. In many ways our software products have never been more interesting, but our distribution methods have certainly not kept up! 
+            </p><p>               
+                <u>What we envision</u><br />
+            </p><p>                
+                We believe the right near-term paradigm for AI agents is one where they plug into your existing context and workflows, and collaborate with you iteratively and interactively the way a trusted colleague might. 
+            </p><p>               
+                That’s why you don’t sign up for our Copilot. While we have a marketing site, our Copilot doesn’t live on a webpage or have its own App. Our Copilot is simply an AI with a Google account. <br />
+                So go ahead and start using it, you already know how!
+            </p>
+
+            <h2 class="text-2xl md:text-3xl pt-10 font-bold text-gray-90 text-center">
+                ⚙️ &nbsp;How does it work?
+            </h2>
+            <p>
+                We combine the latest LLM technologies with good old fashioned headless browsers to engage with your Google Doc exactly the way a person might. Our Copilot is a very early and simple demonstration of an exciting world that is just now becoming possible — if there is any major traction we’ll probably have some outages and other fires to attend to.  
+            </p>
+            <p style="padding-top:32px">
+                <a href="https://x.com/baygross">@baygross</a> and <a href="https://x.com/matthewslotkin">@matthewslotkin</a>
+            </p>
+
+
+            </div>
+        </section> 
+
+
         <script>
             document.querySelectorAll('.faq-header').forEach((item) => {
                 item.addEventListener('click', function() {
@@ -380,7 +410,6 @@
     </div> <!-- wrapper-->
     <!-- Footer -->
     <footer class="text-center py-3">
-        <p class="text-xs mt-2">Follow us on Twitter: <a href="https://x.com/baygross">@baygross</a> and <a href="https://x.com/matthewslotkin">@matthewslotkin</a></p>
         <p class="text-xs mt-2 mb-5">Document CoPilot is not affiliated with OpenAI, Google, or Anthropic.</p>
     </footer>
 
@@ -426,6 +455,23 @@
                 // Reset src to stop the video and remove autoplay parameter
                 iframe.src = iframeSrc;
             }
+        }
+
+        function copyEmailToClipboard() {
+            const email = 'document.copilot@gmail.com';
+            navigator.clipboard.writeText(email).then(function() {
+                showConfirmation();
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        function showConfirmation() {
+            const confirmationMessage = document.getElementById('tooltip');
+            confirmationMessage.textContent = 'copied to clipboard!';
+            setTimeout(() => {
+                confirmationMessage.textContent = 'Click to copy to clipboard!';
+            }, 3000); // Message disappears after 3000ms (3 seconds)
         }
     </script>
 </body>
